@@ -3,517 +3,300 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Post — Jasper in Belize</title>
+  <title>Post — Cooper in Belize</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy:  #0C1F2E;
-      --teal:  #1A7A6E;
-      --cream: #F8F4EE;
-      --sand:  #EDE8DF;
-      --coral: #D96B4B;
-      --ink:   #1D1D1F;
-      --mid:   #6E6E73;
-      --light: #F5F5F7;
-      --border:#D2D2D7;
-      --white: #FFFFFF;
+      --navy:  #0C1F2E; --teal:  #1A7A6E; --cream: #F8F4EE;
+      --sand:  #EDE8DF; --coral: #D96B4B; --ink:   #1D1D1F;
+      --mid:   #6E6E73; --light: #F5F5F7; --border:#D2D2D7; --white: #FFFFFF;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Jost', sans-serif; background: var(--light); color: var(--ink); min-height: 100svh; -webkit-font-smoothing: antialiased; }
 
-    body {
-      font-family: 'Jost', sans-serif;
-      background: var(--light);
-      color: var(--ink);
-      min-height: 100svh;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── SCREENS ─── */
     .screen { display: none; }
     .screen.active { display: flex; }
 
-    /* ─── SETUP SCREEN ─── */
-    #screen-setup {
-      min-height: 100svh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      background: var(--navy);
-    }
+    /* SETUP */
+    #screen-setup { min-height: 100svh; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; background: var(--navy); }
+    .setup-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.9); margin-bottom: 8px; }
+    .setup-sub { font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; margin-bottom: 40px; }
+    .card { background: var(--white); border-radius: 20px; padding: 36px 32px; width: 100%; max-width: 440px; box-shadow: 0 24px 64px rgba(0,0,0,0.3); }
+    .card-title { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .card-sub { font-size: 13px; color: var(--mid); line-height: 1.5; margin-bottom: 28px; }
 
-    .setup-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 8px;
-    }
-
-    .setup-sub {
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.06em;
-      margin-bottom: 48px;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 36px 32px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
-    }
-
-    .card-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 4px;
-    }
-
-    .card-sub {
-      font-size: 13px;
-      color: var(--mid);
-      line-height: 1.5;
-      margin-bottom: 28px;
-    }
-
+    label { display: block; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 7px; }
+    input[type="text"], input[type="password"], textarea, select { width: 100%; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Jost', sans-serif; font-size: 15px; color: var(--ink); background: var(--white); transition: border-color 0.2s; -webkit-appearance: none; appearance: none; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--teal); }
     .field { margin-bottom: 18px; }
+    .field-hint { font-size: 11px; color: var(--mid); margin-top: 5px; line-height: 1.4; }
 
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 7px;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    textarea,
-    select {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-family: 'Jost', sans-serif;
-      font-size: 15px;
-      color: var(--ink);
-      background: var(--white);
-      transition: border-color 0.2s;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: var(--teal);
-    }
-
-    .field-hint {
-      font-size: 11px;
-      color: var(--mid);
-      margin-top: 5px;
-      line-height: 1.4;
-    }
-
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-family: 'Jost', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      letter-spacing: 0.02em;
-    }
-
-    .btn-primary {
-      background: var(--navy);
-      color: var(--white);
-    }
-
+    .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border: none; border-radius: 12px; font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-primary { background: var(--navy); color: var(--white); }
     .btn-primary:hover:not(:disabled) { background: #162e42; transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0); }
     .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .err-msg { font-size: 12px; color: var(--coral); margin-top: 5px; display: none; }
+    .err-msg.show { display: block; }
 
-    .btn-ghost {
-      background: var(--light);
-      color: var(--mid);
-      font-weight: 500;
-    }
+    /* MAIN SCREEN */
+    #screen-post { flex-direction: column; min-height: 100svh; }
 
-    .btn-ghost:hover { background: var(--sand); color: var(--ink); }
-
-    /* ─── POST SCREEN ─── */
-    #screen-post {
-      flex-direction: column;
-      min-height: 100svh;
-    }
-
-    .post-header {
-      background: var(--navy);
-      padding: 20px 24px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .post-header-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 300;
-      color: var(--white);
-    }
-
-    .post-header-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .btn-post-submit {
-      padding: 9px 22px;
-      background: var(--teal);
-      color: var(--white);
-      border: none;
-      border-radius: 100px;
-      font-family: 'Jost', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .btn-post-submit:hover:not(:disabled) { background: #1d8c7e; }
-    .btn-post-submit:disabled { opacity: 0.4; cursor: not-allowed; }
-
-    .btn-settings {
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.5);
-      font-size: 20px;
-      cursor: pointer;
-      padding: 6px;
-      line-height: 1;
-      transition: color 0.2s;
-    }
-
+    .post-header { background: var(--navy); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+    .post-header-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--white); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .btn-settings { background: none; border: none; color: rgba(255,255,255,0.45); font-size: 20px; cursor: pointer; padding: 6px; line-height: 1; transition: color 0.2s; }
     .btn-settings:hover { color: rgba(255,255,255,0.9); }
 
-    .post-body {
-      padding: 24px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 600px;
-      width: 100%;
-      margin: 0 auto;
-    }
+    /* TABS */
+    .tab-bar { display: grid; grid-template-columns: 1fr 1fr; background: var(--white); border-bottom: 1.5px solid var(--border); }
+    .tab-btn { padding: 16px; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; border: none; background: none; cursor: pointer; color: var(--mid); transition: all 0.2s; position: relative; }
+    .tab-btn.active { color: var(--navy); }
+    .tab-btn.active::after { content: ''; position: absolute; bottom: -1.5px; left: 16px; right: 16px; height: 2px; background: var(--teal); border-radius: 2px; }
 
-    /* Day selector row */
-    .day-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    /* TAB PANELS */
+    .tab-panel { display: none; flex-direction: column; gap: 16px; padding: 20px 20px 40px; max-width: 640px; width: 100%; margin: 0 auto; }
+    .tab-panel.active { display: flex; }
 
-    /* Photo upload zone */
-    .photo-zone {
-      border: 2px dashed var(--border);
-      border-radius: 16px;
-      padding: 32px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--white);
-      position: relative;
-    }
+    .section-card { background: var(--white); border-radius: 16px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .section-card-title { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-bottom: 14px; }
 
-    .photo-zone:hover, .photo-zone.drag-over {
-      border-color: var(--teal);
-      background: rgba(26,122,110,0.04);
-    }
+    /* Day row */
+    .day-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-    .photo-zone input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-    }
+    /* Photo zone */
+    .photo-zone { border: 2px dashed var(--border); border-radius: 16px; padding: 28px 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--white); position: relative; }
+    .photo-zone:hover, .photo-zone.drag-over { border-color: var(--teal); background: rgba(26,122,110,0.04); }
+    .photo-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .photo-zone-icon { font-size: 36px; margin-bottom: 8px; }
+    .photo-zone-label { font-size: 14px; color: var(--mid); line-height: 1.5; }
+    .photo-zone-label strong { color: var(--teal); font-weight: 500; }
 
-    .photo-zone-icon { font-size: 32px; margin-bottom: 10px; }
+    /* Preview */
+    .preview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; display: none; }
+    .preview-item { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1; background: var(--sand); }
+    .preview-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .preview-remove { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border-radius: 50%; background: rgba(0,0,0,0.65); color: white; border: none; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-    .photo-zone-label {
-      font-size: 14px;
-      color: var(--mid);
-      line-height: 1.5;
-    }
+    textarea.caption { height: 100px; resize: vertical; line-height: 1.6; }
 
-    .photo-zone-label strong {
-      color: var(--teal);
-      font-weight: 500;
-    }
+    /* Submit button */
+    .btn-post-submit { padding: 15px; background: var(--teal); color: var(--white); border: none; border-radius: 12px; font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; width: 100%; letter-spacing: 0.02em; }
+    .btn-post-submit:hover:not(:disabled) { background: #1d8c7e; transform: translateY(-1px); }
+    .btn-post-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-    /* Preview grid */
-    .preview-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-
-    .preview-item {
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      aspect-ratio: 1;
-      background: var(--sand);
-    }
-
-    .preview-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .preview-remove {
-      position: absolute;
-      top: 6px; right: 6px;
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.65);
-      color: white;
-      border: none;
-      font-size: 14px;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    textarea.caption {
-      height: 120px;
-      resize: vertical;
-      line-height: 1.6;
-    }
-
-    /* Status bar */
-    .status-bar {
-      display: none;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
+    /* Status */
+    .status-bar { display: none; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 12px; font-size: 14px; font-weight: 500; }
     .status-bar.show { display: flex; }
-
-    .status-bar.loading {
-      background: rgba(26,122,110,0.08);
-      color: var(--teal);
-      border: 1px solid rgba(26,122,110,0.2);
-    }
-
-    .status-bar.success {
-      background: rgba(26,122,110,0.1);
-      color: #0f5c52;
-      border: 1px solid rgba(26,122,110,0.3);
-    }
-
-    .status-bar.error {
-      background: rgba(217,107,75,0.08);
-      color: var(--coral);
-      border: 1px solid rgba(217,107,75,0.2);
-    }
-
-    .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(26,122,110,0.3);
-      border-top-color: var(--teal);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      flex-shrink: 0;
-    }
-
+    .status-bar.loading { background: rgba(26,122,110,0.08); color: var(--teal); border: 1px solid rgba(26,122,110,0.2); }
+    .status-bar.success { background: rgba(26,122,110,0.1); color: #0f5c52; border: 1px solid rgba(26,122,110,0.3); }
+    .status-bar.error { background: rgba(217,107,75,0.08); color: var(--coral); border: 1px solid rgba(217,107,75,0.2); }
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(26,122,110,0.3); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .section-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
+    /* Single photo zone (for catch) */
+    .single-photo-zone { border: 2px dashed var(--border); border-radius: 16px; overflow: hidden; position: relative; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; background: var(--light); cursor: pointer; transition: all 0.2s; }
+    .single-photo-zone:hover { border-color: var(--teal); }
+    .single-photo-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .single-photo-zone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .single-photo-zone .spz-label { text-align: center; pointer-events: none; }
+    .single-photo-zone .spz-label span { display: block; font-size: 32px; margin-bottom: 6px; }
+    .single-photo-zone .spz-label p { font-size: 13px; color: var(--mid); }
 
-    .section-card-title {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 14px;
-    }
+    .day-auto-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(26,122,110,0.1); color: var(--teal); padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 500; margin-bottom: 14px; }
 
-    /* Error message */
-    .err-msg {
-      font-size: 12px;
-      color: var(--coral);
-      margin-top: 5px;
-      display: none;
-    }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
 
-    .err-msg.show { display: block; }
+    .site-link { text-align: center; font-size: 13px; color: var(--mid); text-decoration: none; padding-bottom: 8px; }
+
+    @media (min-width: 768px) {
+      .tab-panel { padding: 28px 32px 60px; }
+      .preview-grid { grid-template-columns: repeat(4, 1fr); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ─── SETUP SCREEN ─── -->
+  <!-- SETUP -->
   <div class="screen active" id="screen-setup">
-    <p class="setup-logo">Jasper in Belize</p>
-    <p class="setup-sub">Admin Setup — one time only</p>
-
+    <p class="setup-logo">Cooper in Belize</p>
+    <p class="setup-sub">Admin — one-time setup</p>
     <div class="card">
       <div class="card-title">Connect to GitHub</div>
-      <p class="card-sub">Your posts and photos are stored directly in your GitHub repo. This only needs to be set up once per device.</p>
-
+      <p class="card-sub">Your posts are stored in your GitHub repo. Set this up once and it's remembered on this device.</p>
       <div class="field">
         <label>GitHub Username</label>
-        <input type="text" id="setup-username" placeholder="e.g. jasperwisneski" autocomplete="off" autocorrect="off" autocapitalize="off">
+        <input type="text" id="setup-username" value="Callmejasp" autocomplete="off" autocorrect="off" autocapitalize="off">
       </div>
-
       <div class="field">
         <label>Repository Name</label>
-        <input type="text" id="setup-repo" placeholder="e.g. belize-trip" autocomplete="off" autocorrect="off" autocapitalize="off">
-        <div class="field-hint">Must match your GitHub Pages repo exactly.</div>
+        <input type="text" id="setup-repo" value="Belize-Trip" autocomplete="off" autocorrect="off" autocapitalize="off">
       </div>
-
       <div class="field">
         <label>Personal Access Token</label>
         <input type="password" id="setup-token" placeholder="github_pat_...">
-        <div class="field-hint">Needs <strong>Contents: Read & Write</strong> permission. Generate at github.com → Settings → Developer Settings → Fine-grained tokens.</div>
+        <div class="field-hint">Settings → Developer Settings → Fine-grained tokens. Needs <strong>Contents: Read & Write</strong> on this repo.</div>
       </div>
-
       <div class="err-msg" id="setup-error"></div>
-
       <br>
-      <button class="btn btn-primary" onclick="saveSetup()">Save &amp; Continue →</button>
+      <button class="btn btn-primary" onclick="saveSetup()">Save & Continue →</button>
     </div>
   </div>
 
-  <!-- ─── POST SCREEN ─── -->
+  <!-- MAIN -->
   <div class="screen" id="screen-post">
     <div class="post-header">
-      <span class="post-header-logo">Jasper in Belize</span>
-      <div class="post-header-actions">
-        <button class="btn-settings" onclick="resetSetup()" title="Change GitHub settings">⚙</button>
-        <button class="btn-post-submit" id="submit-btn" onclick="submitPost()">Post</button>
+      <span class="post-header-logo">Cooper in Belize</span>
+      <div class="header-right">
+        <button class="btn-settings" onclick="resetSetup()" title="Settings">⚙</button>
       </div>
     </div>
 
-    <div class="post-body">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('daily')" id="tab-daily">📅 Daily Post</button>
+      <button class="tab-btn" onclick="switchTab('catch')" id="tab-catch">🎣 Log a Catch</button>
+    </div>
 
-      <!-- Status -->
-      <div class="status-bar" id="status-bar">
-        <div class="spinner" id="status-spinner"></div>
-        <span id="status-text"></span>
+    <!-- DAILY POST TAB -->
+    <div class="tab-panel active" id="panel-daily">
+
+      <div class="status-bar" id="daily-status">
+        <div class="spinner" id="daily-spinner"></div>
+        <span id="daily-status-text"></span>
       </div>
 
-      <!-- Day + Date -->
       <div class="section-card">
-        <div class="section-card-title">When</div>
+        <div class="section-card-title">Day</div>
+        <div class="day-auto-tag" id="daily-auto-tag">📍 Auto-detected from today's date</div>
         <div class="day-row">
-          <div class="field" style="margin:0">
+          <div>
             <label>Day</label>
-            <select id="day-select" onchange="syncDate()">
-              <option value="1">Day 1 — Arrival</option>
-              <option value="2">Day 2</option>
-              <option value="3">Day 3</option>
-              <option value="4">Day 4</option>
-              <option value="5">Day 5</option>
-              <option value="6">Day 6 — Departure</option>
+            <select id="daily-day" onchange="syncDailyDate()">
+              <option value="1">Day 1 — May 29</option>
+              <option value="2">Day 2 — May 30</option>
+              <option value="3">Day 3 — May 31</option>
+              <option value="4">Day 4 — June 1</option>
+              <option value="5">Day 5 — June 2</option>
+              <option value="6">Day 6 — June 3</option>
             </select>
           </div>
-          <div class="field" style="margin:0">
-            <label>Date</label>
-            <input type="text" id="post-date" value="May 29, 2026" readonly style="background:var(--light);color:var(--mid)">
+          <div>
+            <label>Title (optional)</label>
+            <input type="text" id="daily-title" placeholder="e.g. First Permit">
           </div>
         </div>
       </div>
 
-      <!-- Title (optional) -->
       <div class="section-card">
-        <div class="section-card-title">Title <span style="font-weight:300;text-transform:none;letter-spacing:0">(optional)</span></div>
-        <input type="text" id="post-title" placeholder="e.g. First Permit on the Flats" style="border:1.5px solid var(--border)">
-      </div>
-
-      <!-- Photos -->
-      <div class="section-card">
-        <div class="section-card-title">Photos</div>
-        <div class="photo-zone" id="photo-zone">
-          <input type="file" id="photo-input" accept="image/*" multiple onchange="handleFiles(this.files)">
+        <div class="section-card-title">Photos <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:11px">(up to 4)</span></div>
+        <div class="photo-zone" id="daily-zone">
+          <input type="file" id="daily-photos" accept="image/*" multiple onchange="handleDailyFiles(this.files)">
           <div class="photo-zone-icon">📷</div>
-          <div class="photo-zone-label">
-            <strong>Tap to add photos</strong><br>
-            Up to 4 per post. HEIC/JPEG supported.
-          </div>
+          <div class="photo-zone-label"><strong>Tap to add photos</strong><br>Select up to 4 at once</div>
         </div>
-        <div class="preview-grid" id="preview-grid" style="margin-top:12px;display:none"></div>
+        <div class="preview-grid" id="daily-preview"></div>
       </div>
 
-      <!-- Caption -->
       <div class="section-card">
         <div class="section-card-title">Field Notes</div>
-        <textarea class="caption" id="post-caption" placeholder="What happened today? Fish caught, conditions, a moment worth writing down..."></textarea>
+        <textarea class="caption" id="daily-caption" placeholder="What happened today? Conditions, fish, a moment worth writing down..."></textarea>
       </div>
 
-      <!-- View site link -->
-      <a id="site-link" href="#" target="_blank" style="text-align:center;font-size:13px;color:var(--mid);text-decoration:none;padding-bottom:24px">
-        View live site →
-      </a>
+      <button class="btn-post-submit" id="daily-submit" onclick="submitDaily()">Post Day →</button>
+      <a class="site-link" id="site-link" href="https://callmejasp.github.io/Belize-Trip/" target="_blank">View live site →</a>
+    </div>
 
+    <!-- LOG A CATCH TAB -->
+    <div class="tab-panel" id="panel-catch">
+
+      <div class="status-bar" id="catch-status">
+        <div class="spinner" id="catch-spinner"></div>
+        <span id="catch-status-text"></span>
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-title">Species</div>
+        <select id="catch-species">
+          <option value="bonefish">Bonefish</option>
+          <option value="permit">Permit</option>
+          <option value="tarpon">Tarpon</option>
+          <option value="snook">Snook</option>
+          <option value="barracuda">Barracuda</option>
+          <option value="jack">Jack Crevalle</option>
+          <option value="snapper">Mutton Snapper</option>
+          <option value="trigger">Triggerfish</option>
+          <option value="ladyfish">Ladyfish</option>
+        </select>
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-title">Photo</div>
+        <div class="single-photo-zone" id="catch-zone">
+          <input type="file" id="catch-photo" accept="image/*" onchange="handleCatchPhoto(this.files[0])">
+          <div class="spz-label" id="catch-spz-label">
+            <span>🐟</span>
+            <p>Tap to add catch photo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-title">Quick Note <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:11px">(optional)</span></div>
+        <input type="text" id="catch-note" placeholder="e.g. Crazy Charlie on the turtle grass, 4 lb">
+      </div>
+
+      <div class="section-card">
+        <div class="section-card-title">Day</div>
+        <div class="day-auto-tag">📍 Auto-detected from today's date</div>
+        <select id="catch-day">
+          <option value="1">Day 1 — May 29</option>
+          <option value="2">Day 2 — May 30</option>
+          <option value="3">Day 3 — May 31</option>
+          <option value="4">Day 4 — June 1</option>
+          <option value="5">Day 5 — June 2</option>
+          <option value="6">Day 6 — June 3</option>
+        </select>
+      </div>
+
+      <button class="btn-post-submit" id="catch-submit" onclick="submitCatch()">Log Catch →</button>
     </div>
   </div>
 
   <script>
-    // ─── Trip dates ───
-    const TRIP_DATES = {
-      1: { date: '2026-05-29', label: 'May 29, 2026' },
-      2: { date: '2026-05-30', label: 'May 30, 2026' },
-      3: { date: '2026-05-31', label: 'May 31, 2026' },
-      4: { date: '2026-06-01', label: 'June 1, 2026'  },
-      5: { date: '2026-06-02', label: 'June 2, 2026'  },
-      6: { date: '2026-06-03', label: 'June 3, 2026'  },
+    const TRIP_DAYS = {
+      1: { date: '2026-05-29', label: 'May 29' },
+      2: { date: '2026-05-30', label: 'May 30' },
+      3: { date: '2026-05-31', label: 'May 31' },
+      4: { date: '2026-06-01', label: 'June 1'  },
+      5: { date: '2026-06-02', label: 'June 2'  },
+      6: { date: '2026-06-03', label: 'June 3'  },
     };
 
     let config = {};
-    let selectedFiles = [];
+    let dailyFiles = [];
+    let catchFile = null;
 
-    // ─── Init ───
+    // ─── Auto-detect day ───
+    function detectDay() {
+      const today = new Date().toISOString().slice(0,10);
+      for (const [day, info] of Object.entries(TRIP_DAYS)) {
+        if (info.date === today) return parseInt(day);
+      }
+      // Return closest day if not exact match
+      const todayMs = new Date(today).getTime();
+      const start = new Date('2026-05-29').getTime();
+      const end   = new Date('2026-06-03').getTime();
+      if (todayMs < start) return 1;
+      if (todayMs > end)   return 6;
+      const diff = Math.round((todayMs - start) / 86400000) + 1;
+      return Math.min(Math.max(diff, 1), 6);
+    }
+
     function init() {
       const stored = localStorage.getItem('belize_admin_config');
       if (stored) {
         config = JSON.parse(stored);
-        showPost();
+        showMain();
       } else {
         show('screen-setup');
       }
@@ -524,111 +307,75 @@
       document.getElementById(id).classList.add('active');
     }
 
-    function showPost() {
+    function showMain() {
       show('screen-post');
-      updateSiteLink();
+      const day = detectDay();
+      document.getElementById('daily-day').value  = day;
+      document.getElementById('catch-day').value  = day;
     }
 
-    // ─── Setup ───
     function saveSetup() {
       const username = document.getElementById('setup-username').value.trim();
       const repo     = document.getElementById('setup-repo').value.trim();
       const token    = document.getElementById('setup-token').value.trim();
       const errEl    = document.getElementById('setup-error');
-
-      if (!username || !repo || !token) {
-        errEl.textContent = 'All three fields are required.';
-        errEl.classList.add('show');
-        return;
-      }
-
+      if (!username || !repo || !token) { errEl.textContent = 'All fields required.'; errEl.classList.add('show'); return; }
       errEl.classList.remove('show');
       config = { username, repo, token };
       localStorage.setItem('belize_admin_config', JSON.stringify(config));
-      showPost();
+      showMain();
     }
 
     function resetSetup() {
-      if (!confirm('Clear saved GitHub settings?')) return;
+      if (!confirm('Clear saved settings?')) return;
       localStorage.removeItem('belize_admin_config');
       config = {};
       show('screen-setup');
     }
 
-    function updateSiteLink() {
-      const el = document.getElementById('site-link');
-      if (config.username && config.repo) {
-        el.href = `https://${config.username}.github.io/${config.repo}/`;
-        el.textContent = `${config.username}.github.io/${config.repo} →`;
-      }
+    // ─── Tabs ───
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
     }
 
-    // ─── Day sync ───
-    function syncDate() {
-      const day = parseInt(document.getElementById('day-select').value);
-      document.getElementById('post-date').value = TRIP_DATES[day].label;
+    // ─── Daily files ───
+    function handleDailyFiles(files) {
+      const remaining = 4 - dailyFiles.length;
+      dailyFiles = [...dailyFiles, ...Array.from(files).slice(0, remaining)];
+      renderDailyPreviews();
     }
 
-    // ─── File handling ───
-    function handleFiles(files) {
-      const remaining = 4 - selectedFiles.length;
-      const newFiles = Array.from(files).slice(0, remaining);
-      selectedFiles = [...selectedFiles, ...newFiles];
-      renderPreviews();
-    }
-
-    function renderPreviews() {
-      const grid = document.getElementById('preview-grid');
-      if (selectedFiles.length === 0) {
-        grid.style.display = 'none';
-        grid.innerHTML = '';
-        return;
-      }
+    function renderDailyPreviews() {
+      const grid = document.getElementById('daily-preview');
+      if (!dailyFiles.length) { grid.style.display = 'none'; grid.innerHTML = ''; return; }
       grid.style.display = 'grid';
-      grid.innerHTML = selectedFiles.map((file, i) => {
-        const url = URL.createObjectURL(file);
-        return `
-          <div class="preview-item">
-            <img src="${url}" alt="">
-            <button class="preview-remove" onclick="removeFile(${i})">×</button>
-          </div>
-        `;
+      grid.innerHTML = dailyFiles.map((f, i) => {
+        const url = URL.createObjectURL(f);
+        return `<div class="preview-item"><img src="${url}"><button class="preview-remove" onclick="removeDailyFile(${i})">×</button></div>`;
       }).join('');
     }
 
-    function removeFile(index) {
-      selectedFiles.splice(index, 1);
-      renderPreviews();
+    function removeDailyFile(i) { dailyFiles.splice(i,1); renderDailyPreviews(); }
+
+    function syncDailyDate() { /* dates shown in select */ }
+
+    // ─── Catch photo ───
+    function handleCatchPhoto(file) {
+      if (!file) return;
+      catchFile = file;
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      document.getElementById('catch-spz-label').style.display = 'none';
+      const zone = document.getElementById('catch-zone');
+      const existing = zone.querySelector('img:not(input)');
+      if (existing) existing.remove();
+      zone.appendChild(img);
     }
 
-    // Drag + drop
-    const zone = document.getElementById('photo-zone');
-    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
-    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
-    zone.addEventListener('drop', e => {
-      e.preventDefault();
-      zone.classList.remove('drag-over');
-      handleFiles(e.dataTransfer.files);
-    });
-
-    // ─── Status UI ───
-    function setStatus(type, msg) {
-      const bar     = document.getElementById('status-bar');
-      const text    = document.getElementById('status-text');
-      const spinner = document.getElementById('status-spinner');
-      const btn     = document.getElementById('submit-btn');
-
-      bar.className = 'status-bar show ' + type;
-      text.textContent = msg;
-      spinner.style.display = type === 'loading' ? 'block' : 'none';
-      btn.disabled = type === 'loading';
-    }
-
-    function clearStatus() {
-      document.getElementById('status-bar').className = 'status-bar';
-    }
-
-    // ─── GitHub API helpers ───
+    // ─── GitHub API ───
     async function fileToBase64(file) {
       return new Promise((res, rej) => {
         const r = new FileReader();
@@ -638,118 +385,143 @@
       });
     }
 
-    async function ghFetch(path, method = 'GET', body = null) {
-      const opts = {
-        method,
-        headers: {
-          'Authorization': `token ${config.token}`,
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json'
-        }
-      };
+    async function ghFetch(path, method='GET', body=null) {
+      const opts = { method, headers: { 'Authorization': `token ${config.token}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' } };
       if (body) opts.body = JSON.stringify(body);
       const res = await fetch(`https://api.github.com/repos/${config.username}/${config.repo}/contents/${path}`, opts);
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || `GitHub API error ${res.status}`);
+      if (!res.ok) throw new Error(data.message || `GitHub ${res.status}`);
       return data;
     }
 
-    async function uploadPhoto(file, day) {
+    async function uploadPhoto(file, prefix) {
       const base64 = await fileToBase64(file);
-      const safeExt = file.name.split('.').pop().toLowerCase().replace(/heic/i,'jpg') || 'jpg';
-      const filename = `photos/day${day}-${Date.now()}.${safeExt}`;
-      const result = await ghFetch(filename, 'PUT', {
-        message: `📸 Day ${day} photo`,
-        content: base64
-      });
+      const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace('heic','jpg');
+      const filename = `photos/${prefix}-${Date.now()}.${ext}`;
+      const result = await ghFetch(filename, 'PUT', { message: `📸 ${prefix}`, content: base64 });
       return result.content.download_url;
     }
 
     async function readPostsJson() {
       try {
         const data = await ghFetch('posts.json');
-        const decoded = JSON.parse(atob(data.content.replace(/\n/g, '')));
-        return { posts: decoded, sha: data.sha };
+        const decoded = JSON.parse(atob(data.content.replace(/\n/g,'')));
+        return { data: decoded, sha: data.sha };
       } catch (_) {
-        return { posts: { posts: [] }, sha: null };
+        return { data: { posts: [], catches: [] }, sha: null };
       }
     }
 
-    async function writePostsJson(posts, sha) {
-      const content = btoa(unescape(encodeURIComponent(JSON.stringify(posts, null, 2))));
-      const body = { message: `📝 Update posts.json`, content };
+    async function writePostsJson(data, sha) {
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+      const body = { message: '📝 Update posts.json', content };
       if (sha) body.sha = sha;
       await ghFetch('posts.json', 'PUT', body);
     }
 
-    // ─── Submit ───
-    async function submitPost() {
-      const day     = parseInt(document.getElementById('day-select').value);
-      const title   = document.getElementById('post-title').value.trim();
-      const caption = document.getElementById('post-caption').value.trim();
+    // ─── Submit daily ───
+    async function submitDaily() {
+      const day     = parseInt(document.getElementById('daily-day').value);
+      const title   = document.getElementById('daily-title').value.trim();
+      const caption = document.getElementById('daily-caption').value.trim();
 
-      if (!caption && selectedFiles.length === 0) {
-        setStatus('error', 'Add a caption or at least one photo before posting.');
+      if (!caption && dailyFiles.length === 0) {
+        setStatus('daily', 'error', 'Add a caption or at least one photo.');
         return;
       }
-
-      setStatus('loading', 'Preparing…');
+      setStatus('daily', 'loading', 'Preparing…');
+      document.getElementById('daily-submit').disabled = true;
 
       try {
-        // 1. Upload photos
         const photoUrls = [];
-        for (let i = 0; i < selectedFiles.length; i++) {
-          setStatus('loading', `Uploading photo ${i + 1} of ${selectedFiles.length}…`);
-          const url = await uploadPhoto(selectedFiles[i], day);
-          photoUrls.push(url);
+        for (let i = 0; i < dailyFiles.length; i++) {
+          setStatus('daily', 'loading', `Uploading photo ${i+1} of ${dailyFiles.length}…`);
+          photoUrls.push(await uploadPhoto(dailyFiles[i], `day${day}`));
         }
+        setStatus('daily', 'loading', 'Saving…');
+        const { data, sha } = await readPostsJson();
+        if (!data.catches) data.catches = [];
 
-        // 2. Read current posts.json
-        setStatus('loading', 'Saving post…');
-        const { posts: currentData, sha } = await readPostsJson();
-
-        // 3. Add or replace this day's post
-        const newPost = {
-          id:        `day-${day}`,
-          day,
-          date:      TRIP_DATES[day].date,
-          title:     title || `Day ${day}`,
-          caption,
-          photos:    photoUrls,
-          timestamp: new Date().toISOString()
-        };
-
-        const existingIdx = currentData.posts.findIndex(p => p.day === day);
-        if (existingIdx >= 0) {
-          // Merge photos if re-posting same day
-          const existing = currentData.posts[existingIdx];
-          newPost.photos = [...existing.photos, ...photoUrls].slice(0, 8);
-          if (!title) newPost.title = existing.title;
-          if (!caption) newPost.caption = existing.caption;
-          currentData.posts[existingIdx] = newPost;
+        const post = { id:`day-${day}`, day, date: TRIP_DAYS[day].date, title: title || `Day ${day}`, caption, photos: photoUrls, timestamp: new Date().toISOString() };
+        const idx = data.posts.findIndex(p => p.day === day);
+        if (idx >= 0) {
+          const ex = data.posts[idx];
+          post.photos = [...ex.photos, ...photoUrls].slice(0, 8);
+          if (!title)   post.title   = ex.title;
+          if (!caption) post.caption = ex.caption;
+          data.posts[idx] = post;
         } else {
-          currentData.posts.unshift(newPost);
-          currentData.posts.sort((a, b) => a.day - b.day);
+          data.posts.push(post);
+          data.posts.sort((a,b) => a.day - b.day);
         }
-
-        // 4. Write back
-        await writePostsJson(currentData, sha);
-
-        setStatus('success', `✓ Day ${day} posted! Goes live in ~60 seconds.`);
-        resetForm();
-
+        await writePostsJson(data, sha);
+        setStatus('daily', 'success', `✓ Day ${day} posted! Live in ~60 seconds.`);
+        dailyFiles = [];
+        renderDailyPreviews();
+        document.getElementById('daily-title').value = '';
+        document.getElementById('daily-caption').value = '';
+        document.getElementById('daily-photos').value = '';
       } catch (err) {
-        setStatus('error', `Error: ${err.message}`);
+        setStatus('daily', 'error', `Error: ${err.message}`);
+      } finally {
+        document.getElementById('daily-submit').disabled = false;
       }
     }
 
-    function resetForm() {
-      selectedFiles = [];
-      renderPreviews();
-      document.getElementById('post-title').value   = '';
-      document.getElementById('post-caption').value = '';
-      document.getElementById('photo-input').value  = '';
+    // ─── Submit catch ───
+    async function submitCatch() {
+      const species = document.getElementById('catch-species').value;
+      const day     = parseInt(document.getElementById('catch-day').value);
+      const note    = document.getElementById('catch-note').value.trim();
+
+      if (!catchFile) {
+        setStatus('catch', 'error', 'Add a photo of the catch first.');
+        return;
+      }
+      setStatus('catch', 'loading', 'Uploading photo…');
+      document.getElementById('catch-submit').disabled = true;
+
+      try {
+        const photoUrl = await uploadPhoto(catchFile, `catch-${species}`);
+        setStatus('catch', 'loading', 'Saving catch…');
+        const { data, sha } = await readPostsJson();
+        if (!data.catches) data.catches = [];
+
+        const catchEntry = { species, day, date: TRIP_DAYS[day].date, photo: photoUrl, note, timestamp: new Date().toISOString() };
+        const existingIdx = data.catches.findIndex(c => c.species === species);
+        if (existingIdx >= 0) data.catches[existingIdx] = catchEntry;
+        else data.catches.push(catchEntry);
+
+        await writePostsJson(data, sha);
+        setStatus('catch', 'success', `✓ ${species.charAt(0).toUpperCase()+species.slice(1)} logged! Live in ~60 seconds.`);
+        catchFile = null;
+        document.getElementById('catch-photo').value = '';
+        document.getElementById('catch-spz-label').style.display = 'flex';
+        const zone = document.getElementById('catch-zone');
+        const img = zone.querySelector('img:not(input)');
+        if (img) img.remove();
+        document.getElementById('catch-note').value = '';
+      } catch (err) {
+        setStatus('catch', 'error', `Error: ${err.message}`);
+      } finally {
+        document.getElementById('catch-submit').disabled = false;
+      }
     }
+
+    function setStatus(tab, type, msg) {
+      const bar     = document.getElementById(`${tab}-status`);
+      const text    = document.getElementById(`${tab}-status-text`);
+      const spinner = document.getElementById(`${tab}-spinner`);
+      bar.className = 'status-bar show ' + type;
+      text.textContent = msg;
+      spinner.style.display = type === 'loading' ? 'block' : 'none';
+    }
+
+    // Drag and drop
+    const dzone = document.getElementById('daily-zone');
+    dzone.addEventListener('dragover', e => { e.preventDefault(); dzone.classList.add('drag-over'); });
+    dzone.addEventListener('dragleave', () => dzone.classList.remove('drag-over'));
+    dzone.addEventListener('drop', e => { e.preventDefault(); dzone.classList.remove('drag-over'); handleDailyFiles(e.dataTransfer.files); });
 
     init();
   </script>
