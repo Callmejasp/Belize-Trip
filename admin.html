@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post — Jasper in Belize</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:  #0C1F2E;
+      --teal:  #1A7A6E;
+      --cream: #F8F4EE;
+      --sand:  #EDE8DF;
+      --coral: #D96B4B;
+      --ink:   #1D1D1F;
+      --mid:   #6E6E73;
+      --light: #F5F5F7;
+      --border:#D2D2D7;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--light);
+      color: var(--ink);
+      min-height: 100svh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── SCREENS ─── */
+    .screen { display: none; }
+    .screen.active { display: flex; }
+
+    /* ─── SETUP SCREEN ─── */
+    #screen-setup {
+      min-height: 100svh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      background: var(--navy);
+    }
+
+    .setup-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 8px;
+    }
+
+    .setup-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .card-sub {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .field { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--mid);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-primary:hover:not(:disabled) { background: #162e42; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .btn-ghost {
+      background: var(--light);
+      color: var(--mid);
+      font-weight: 500;
+    }
+
+    .btn-ghost:hover { background: var(--sand); color: var(--ink); }
+
+    /* ─── POST SCREEN ─── */
+    #screen-post {
+      flex-direction: column;
+      min-height: 100svh;
+    }
+
+    .post-header {
+      background: var(--navy);
+      padding: 20px 24px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .post-header-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--white);
+    }
+
+    .post-header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-post-submit {
+      padding: 9px 22px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      border-radius: 100px;
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-post-submit:hover:not(:disabled) { background: #1d8c7e; }
+    .btn-post-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-settings {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 6px;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .btn-settings:hover { color: rgba(255,255,255,0.9); }
+
+    .post-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Day selector row */
+    .day-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Photo upload zone */
+    .photo-zone {
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--white);
+      position: relative;
+    }
+
+    .photo-zone:hover, .photo-zone.drag-over {
+      border-color: var(--teal);
+      background: rgba(26,122,110,0.04);
+    }
+
+    .photo-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .photo-zone-icon { font-size: 32px; margin-bottom: 10px; }
+
+    .photo-zone-label {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    .photo-zone-label strong {
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    /* Preview grid */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .preview-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--sand);
+    }
+
+    .preview-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .preview-remove {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      border: none;
+      font-size: 14px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    textarea.caption {
+      height: 120px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .status-bar.show { display: flex; }
+
+    .status-bar.loading {
+      background: rgba(26,122,110,0.08);
+      color: var(--teal);
+      border: 1px solid rgba(26,122,110,0.2);
+    }
+
+    .status-bar.success {
+      background: rgba(26,122,110,0.1);
+      color: #0f5c52;
+      border: 1px solid rgba(26,122,110,0.3);
+    }
+
+    .status-bar.error {
+      background: rgba(217,107,75,0.08);
+      color: var(--coral);
+      border: 1px solid rgba(217,107,75,0.2);
+    }
+
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(26,122,110,0.3);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .section-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .section-card-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 14px;
+    }
+
+    /* Error message */
+    .err-msg {
+      font-size: 12px;
+      color: var(--coral);
+      margin-top: 5px;
+      display: none;
+    }
+
+    .err-msg.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ─── SETUP SCREEN ─── -->
+  <div class="screen active" id="screen-setup">
+    <p class="setup-logo">Jasper in Belize</p>
+    <p class="setup-sub">Admin Setup — one time only</p>
+
+    <div class="card">
+      <div class="card-title">Connect to GitHub</div>
+      <p class="card-sub">Your posts and photos are stored directly in your GitHub repo. This only needs to be set up once per device.</p>
+
+      <div class="field">
+        <label>GitHub Username</label>
+        <input type="text" id="setup-username" placeholder="e.g. jasperwisneski" autocomplete="off" autocorrect="off" autocapitalize="off">
+      </div>
+
+      <div class="field">
+        <label>Repository Name</label>
+        <input type="text" id="setup-repo" placeholder="e.g. belize-trip" autocomplete="off" autocorrect="off" autocapitalize="off">
+        <div class="field-hint">Must match your GitHub Pages repo exactly.</div>
+      </div>
+
+      <div class="field">
+        <label>Personal Access Token</label>
+        <input type="password" id="setup-token" placeholder="github_pat_...">
+        <div class="field-hint">Needs <strong>Contents: Read & Write</strong> permission. Generate at github.com → Settings → Developer Settings → Fine-grained tokens.</div>
+      </div>
+
+      <div class="err-msg" id="setup-error"></div>
+
+      <br>
+      <button class="btn btn-primary" onclick="saveSetup()">Save &amp; Continue →</button>
+    </div>
+  </div>
+
+  <!-- ─── POST SCREEN ─── -->
+  <div class="screen" id="screen-post">
+    <div class="post-header">
+      <span class="post-header-logo">Jasper in Belize</span>
+      <div class="post-header-actions">
+        <button class="btn-settings" onclick="resetSetup()" title="Change GitHub settings">⚙</button>
+        <button class="btn-post-submit" id="submit-btn" onclick="submitPost()">Post</button>
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      <!-- Status -->
+      <div class="status-bar" id="status-bar">
+        <div class="spinner" id="status-spinner"></div>
+        <span id="status-text"></span>
+      </div>
+
+      <!-- Day + Date -->
+      <div class="section-card">
+        <div class="section-card-title">When</div>
+        <div class="day-row">
+          <div class="field" style="margin:0">
+            <label>Day</label>
+            <select id="day-select" onchange="syncDate()">
+              <option value="1">Day 1 — Arrival</option>
+              <option value="2">Day 2</option>
+              <option value="3">Day 3</option>
+              <option value="4">Day 4</option>
+              <option value="5">Day 5</option>
+              <option value="6">Day 6 — Departure</option>
+            </select>
+          </div>
+          <div class="field" style="margin:0">
+            <label>Date</label>
+            <input type="text" id="post-date" value="May 29, 2026" readonly style="background:var(--light);color:var(--mid)">
+          </div>
+        </div>
+      </div>
+
+      <!-- Title (optional) -->
+      <div class="section-card">
+        <div class="section-card-title">Title <span style="font-weight:300;text-transform:none;letter-spacing:0">(optional)</span></div>
+        <input type="text" id="post-title" placeholder="e.g. First Permit on the Flats" style="border:1.5px solid var(--border)">
+      </div>
+
+      <!-- Photos -->
+      <div class="section-card">
+        <div class="section-card-title">Photos</div>
+        <div class="photo-zone" id="photo-zone">
+          <input type="file" id="photo-input" accept="image/*" multiple onchange="handleFiles(this.files)">
+          <div class="photo-zone-icon">📷</div>
+          <div class="photo-zone-label">
+            <strong>Tap to add photos</strong><br>
+            Up to 4 per post. HEIC/JPEG supported.
+          </div>
+        </div>
+        <div class="preview-grid" id="preview-grid" style="margin-top:12px;display:none"></div>
+      </div>
+
+      <!-- Caption -->
+      <div class="section-card">
+        <div class="section-card-title">Field Notes</div>
+        <textarea class="caption" id="post-caption" placeholder="What happened today? Fish caught, conditions, a moment worth writing down..."></textarea>
+      </div>
+
+      <!-- View site link -->
+      <a id="site-link" href="#" target="_blank" style="text-align:center;font-size:13px;color:var(--mid);text-decoration:none;padding-bottom:24px">
+        View live site →
+      </a>
+
+    </div>
+  </div>
+
+  <script>
+    // ─── Trip dates ───
+    const TRIP_DATES = {
+      1: { date: '2026-05-29', label: 'May 29, 2026' },
+      2: { date: '2026-05-30', label: 'May 30, 2026' },
+      3: { date: '2026-05-31', label: 'May 31, 2026' },
+      4: { date: '2026-06-01', label: 'June 1, 2026'  },
+      5: { date: '2026-06-02', label: 'June 2, 2026'  },
+      6: { date: '2026-06-03', label: 'June 3, 2026'  },
+    };
+
+    let config = {};
+    let selectedFiles = [];
+
+    // ─── Init ───
+    function init() {
+      const stored = localStorage.getItem('belize_admin_config');
+      if (stored) {
+        config = JSON.parse(stored);
+        showPost();
+      } else {
+        show('screen-setup');
+      }
+    }
+
+    function show(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function showPost() {
+      show('screen-post');
+      updateSiteLink();
+    }
+
+    // ─── Setup ───
+    function saveSetup() {
+      const username = document.getElementById('setup-username').value.trim();
+      const repo     = document.getElementById('setup-repo').value.trim();
+      const token    = document.getElementById('setup-token').value.trim();
+      const errEl    = document.getElementById('setup-error');
+
+      if (!username || !repo || !token) {
+        errEl.textContent = 'All three fields are required.';
+        errEl.classList.add('show');
+        return;
+      }
+
+      errEl.classList.remove('show');
+      config = { username, repo, token };
+      localStorage.setItem('belize_admin_config', JSON.stringify(config));
+      showPost();
+    }
+
+    function resetSetup() {
+      if (!confirm('Clear saved GitHub settings?')) return;
+      localStorage.removeItem('belize_admin_config');
+      config = {};
+      show('screen-setup');
+    }
+
+    function updateSiteLink() {
+      const el = document.getElementById('site-link');
+      if (config.username && config.repo) {
+        el.href = `https://${config.username}.github.io/${config.repo}/`;
+        el.textContent = `${config.username}.github.io/${config.repo} →`;
+      }
+    }
+
+    // ─── Day sync ───
+    function syncDate() {
+      const day = parseInt(document.getElementById('day-select').value);
+      document.getElementById('post-date').value = TRIP_DATES[day].label;
+    }
+
+    // ─── File handling ───
+    function handleFiles(files) {
+      const remaining = 4 - selectedFiles.length;
+      const newFiles = Array.from(files).slice(0, remaining);
+      selectedFiles = [...selectedFiles, ...newFiles];
+      renderPreviews();
+    }
+
+    function renderPreviews() {
+      const grid = document.getElementById('preview-grid');
+      if (selectedFiles.length === 0) {
+        grid.style.display = 'none';
+        grid.innerHTML = '';
+        return;
+      }
+      grid.style.display = 'grid';
+      grid.innerHTML = selectedFiles.map((file, i) => {
+        const url = URL.createObjectURL(file);
+        return `
+          <div class="preview-item">
+            <img src="${url}" alt="">
+            <button class="preview-remove" onclick="removeFile(${i})">×</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function removeFile(index) {
+      selectedFiles.splice(index, 1);
+      renderPreviews();
+    }
+
+    // Drag + drop
+    const zone = document.getElementById('photo-zone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    // ─── Status UI ───
+    function setStatus(type, msg) {
+      const bar     = document.getElementById('status-bar');
+      const text    = document.getElementById('status-text');
+      const spinner = document.getElementById('status-spinner');
+      const btn     = document.getElementById('submit-btn');
+
+      bar.className = 'status-bar show ' + type;
+      text.textContent = msg;
+      spinner.style.display = type === 'loading' ? 'block' : 'none';
+      btn.disabled = type === 'loading';
+    }
+
+    function clearStatus() {
+      document.getElementById('status-bar').className = 'status-bar';
+    }
+
+    // ─── GitHub API helpers ───
+    async function fileToBase64(file) {
+      return new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result.split(',')[1]);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+    }
+
+    async function ghFetch(path, method = 'GET', body = null) {
+      const opts = {
+        method,
+        headers: {
+          'Authorization': `token ${config.token}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        }
+      };
+      if (body) opts.body = JSON.stringify(body);
+      const res = await fetch(`https://api.github.com/repos/${config.username}/${config.repo}/contents/${path}`, opts);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || `GitHub API error ${res.status}`);
+      return data;
+    }
+
+    async function uploadPhoto(file, day) {
+      const base64 = await fileToBase64(file);
+      const safeExt = file.name.split('.').pop().toLowerCase().replace(/heic/i,'jpg') || 'jpg';
+      const filename = `photos/day${day}-${Date.now()}.${safeExt}`;
+      const result = await ghFetch(filename, 'PUT', {
+        message: `📸 Day ${day} photo`,
+        content: base64
+      });
+      return result.content.download_url;
+    }
+
+    async function readPostsJson() {
+      try {
+        const data = await ghFetch('posts.json');
+        const decoded = JSON.parse(atob(data.content.replace(/\n/g, '')));
+        return { posts: decoded, sha: data.sha };
+      } catch (_) {
+        return { posts: { posts: [] }, sha: null };
+      }
+    }
+
+    async function writePostsJson(posts, sha) {
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(posts, null, 2))));
+      const body = { message: `📝 Update posts.json`, content };
+      if (sha) body.sha = sha;
+      await ghFetch('posts.json', 'PUT', body);
+    }
+
+    // ─── Submit ───
+    async function submitPost() {
+      const day     = parseInt(document.getElementById('day-select').value);
+      const title   = document.getElementById('post-title').value.trim();
+      const caption = document.getElementById('post-caption').value.trim();
+
+      if (!caption && selectedFiles.length === 0) {
+        setStatus('error', 'Add a caption or at least one photo before posting.');
+        return;
+      }
+
+      setStatus('loading', 'Preparing…');
+
+      try {
+        // 1. Upload photos
+        const photoUrls = [];
+        for (let i = 0; i < selectedFiles.length; i++) {
+          setStatus('loading', `Uploading photo ${i + 1} of ${selectedFiles.length}…`);
+          const url = await uploadPhoto(selectedFiles[i], day);
+          photoUrls.push(url);
+        }
+
+        // 2. Read current posts.json
+        setStatus('loading', 'Saving post…');
+        const { posts: currentData, sha } = await readPostsJson();
+
+        // 3. Add or replace this day's post
+        const newPost = {
+          id:        `day-${day}`,
+          day,
+          date:      TRIP_DATES[day].date,
+          title:     title || `Day ${day}`,
+          caption,
+          photos:    photoUrls,
+          timestamp: new Date().toISOString()
+        };
+
+        const existingIdx = currentData.posts.findIndex(p => p.day === day);
+        if (existingIdx >= 0) {
+          // Merge photos if re-posting same day
+          const existing = currentData.posts[existingIdx];
+          newPost.photos = [...existing.photos, ...photoUrls].slice(0, 8);
+          if (!title) newPost.title = existing.title;
+          if (!caption) newPost.caption = existing.caption;
+          currentData.posts[existingIdx] = newPost;
+        } else {
+          currentData.posts.unshift(newPost);
+          currentData.posts.sort((a, b) => a.day - b.day);
+        }
+
+        // 4. Write back
+        await writePostsJson(currentData, sha);
+
+        setStatus('success', `✓ Day ${day} posted! Goes live in ~60 seconds.`);
+        resetForm();
+
+      } catch (err) {
+        setStatus('error', `Error: ${err.message}`);
+      }
+    }
+
+    function resetForm() {
+      selectedFiles = [];
+      renderPreviews();
+      document.getElementById('post-title').value   = '';
+      document.getElementById('post-caption').value = '';
+      document.getElementById('photo-input').value  = '';
+    }
+
+    init();
+  </script>
+</body>
+</html>
