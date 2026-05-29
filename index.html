@@ -4,157 +4,591 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cooper in Belize</title>
-  <meta name="description" content="Live trip tracker — San Pedro, Belize. May 29 – June 3, 2026.">
+  <meta name="description" content="San Pedro, Belize. May 29 – June 3, 2026.">
   <meta property="og:title" content="Cooper in Belize">
   <meta property="og:description" content="Live tracking, daily catches, and field notes from the flats.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy:   #0C1F2E;
-      --teal:   #1A7A6E;
-      --cream:  #F8F4EE;
-      --sand:   #EDE8DF;
-      --coral:  #D96B4B;
-      --ink:    #1D1D1F;
-      --mid:    #6E6E73;
-      --border: rgba(0,0,0,0.08);
-      --light:  #F5F5F7;
-      --white:  #FFFFFF;
+      --bg:      #F9F7F4;
+      --white:   #FFFFFF;
+      --ink:     #111111;
+      --gray:    #888880;
+      --rule:    #D8D4CE;
+      --warm:    #C4A882;
+      --teal:    #2A7A6E;
+      --mid:     #555550;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; font-weight: 400; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; }
 
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 60px; background: rgba(12,31,46,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--white); letter-spacing: 0.02em; text-decoration: none; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.72); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      font-weight: 300;
+    }
 
-    /* HERO */
-    .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 72px; position: relative; overflow: hidden; background: var(--navy); }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 30%, rgba(26,122,110,0.35) 0%, transparent 60%), radial-gradient(ellipse 50% 80% at 20% 80%, rgba(217,107,75,0.18) 0%, transparent 50%), linear-gradient(160deg, #0C1F2E 0%, #071622 100%); animation: shimmer 12s ease-in-out infinite alternate; }
-    @keyframes shimmer { 0% { opacity: 1; filter: hue-rotate(0deg); } 100% { opacity: 0.85; filter: hue-rotate(15deg); } }
-    .hero-content { position: relative; z-index: 1; max-width: 700px; }
-    .hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(56px, 8vw, 96px); font-weight: 300; line-height: 1.0; color: var(--white); margin-bottom: 24px; letter-spacing: -0.01em; }
-    .hero-title em { font-style: italic; color: rgba(255,255,255,0.55); }
-    .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; }
-    .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .hero-meta-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-    .hero-meta-value { font-size: 15px; color: rgba(255,255,255,0.85); font-weight: 300; }
+    /* Subtle grain texture — Arsham influence */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
 
-    /* SECTION SHARED */
-    section { scroll-margin-top: 60px; }
-    .section-header { padding: 80px 48px 48px; }
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 300; color: var(--navy); line-height: 1.1; }
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 56px;
+      background: rgba(249,247,244,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+    }
 
-    /* MAP */
-    #map { background: var(--sand); }
-    .map-header { padding: 72px 48px 32px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .live-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(26,122,110,0.12); border: 1px solid rgba(26,122,110,0.3); border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--teal); margin-bottom: 12px; }
-    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
 
-    .map-card { margin: 0 48px 72px; border-radius: 20px; background: var(--white); box-shadow: 0 8px 48px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
-    .map-card-left { padding: 52px 48px; display: flex; flex-direction: column; justify-content: center; gap: 32px; }
-    .map-card-right { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 52px 40px; gap: 24px; overflow: hidden; min-height: 380px; }
-    .map-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .map-bg-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(12,31,46,0.72) 0%, rgba(12,31,46,0.55) 100%); }
-    .map-card-right > *:not(.map-bg-video):not(.map-bg-overlay) { position: relative; z-index: 1; }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
 
-    .map-card-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
-    .map-card-heading { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--navy); line-height: 1.1; margin-bottom: 4px; }
-    .map-card-sub { font-size: 14px; color: var(--mid); line-height: 1.6; }
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-    .password-block { background: var(--light); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px; }
-    .password-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
-    .password-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .password-value { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: var(--navy); letter-spacing: 0.04em; }
-    .copy-btn { padding: 8px 16px; background: var(--navy); color: var(--white); border: none; border-radius: 8px; font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-    .copy-btn:hover { background: #162e42; }
-    .copy-btn.copied { background: var(--teal); }
-    .password-hint { font-size: 12px; color: var(--mid); margin-top: 8px; line-height: 1.5; }
+    .nav-links a:hover { color: var(--ink); }
 
-    .map-open-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.35); border-radius: 100px; color: var(--white); text-decoration: none; font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.03em; transition: all 0.2s; backdrop-filter: blur(8px); }
-    .map-open-btn:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.55); transform: translateY(-1px); }
-    .map-open-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-    .map-live-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.6); }
-    .map-right-note { font-size: 12px; color: rgba(255,255,255,0.35); text-align: center; line-height: 1.5; max-width: 200px; }
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100svh;
+      padding: 120px 48px 80px;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      position: relative;
+      overflow: hidden;
+    }
 
-    /* SPECIES */
+    .hero-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-sketch {
+      width: min(680px, 90vw);
+      opacity: 0.12;
+      margin-bottom: -60px;
+      margin-top: -40px;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-sup {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 12vw, 148px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 0.92;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      display: block;
+      font-style: normal;
+      font-size: 0.52em;
+      letter-spacing: 0.04em;
+      color: var(--gray);
+      margin-top: 12px;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item { display: flex; flex-direction: column; gap: 5px; }
+
+    .meta-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .meta-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .hero-index {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      text-align: right;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { scroll-margin-top: 56px; position: relative; }
+
+    .section-rule {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 80px 48px 48px;
+    }
+
+    .section-rule-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .section-rule-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .section-rule-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── SPECIES ─── */
     #species { background: var(--white); }
-    .species-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; padding: 0 48px 80px; }
-    .species-card { border-radius: 16px; overflow: hidden; background: var(--light); border: 1.5px solid transparent; transition: all 0.25s; position: relative; }
-    .species-card.caught { border-color: rgba(26,122,110,0.3); background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
-    .species-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
-    .species-photo { aspect-ratio: 4/3; background: var(--sand); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-    .species-photo img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; transition: transform 0.3s; }
-    .species-photo img:hover { transform: scale(1.04); }
-    .species-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; height: 100%; }
-    .species-placeholder-icon { font-size: 36px; opacity: 0.25; filter: grayscale(1); }
-    .species-placeholder-text { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); opacity: 0.6; }
-    .species-badge { position: absolute; top: 10px; right: 10px; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-    .species-info { padding: 14px 16px; }
-    .species-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--navy); }
-    .species-day { font-size: 12px; color: var(--teal); font-weight: 500; margin-top: 3px; }
-    .species-note { font-size: 12px; color: var(--mid); margin-top: 4px; line-height: 1.4; }
-    .species-pending { font-size: 12px; color: var(--mid); margin-top: 3px; font-style: italic; }
 
-    /* LOG */
-    #log { background: var(--cream); }
-    .log-feed { padding: 0 48px 80px; display: flex; flex-direction: column; }
-    .post-card { display: grid; grid-template-columns: 72px 1fr; gap: 0 32px; padding: 56px 0; border-bottom: 1px solid var(--border); animation: slide-up 0.5s ease both; }
-    @keyframes slide-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .post-day-num { font-family: 'Cormorant Garamond', serif; font-size: 80px; font-weight: 300; color: rgba(12,31,46,0.07); line-height: 1; user-select: none; padding-top: 4px; letter-spacing: -0.03em; }
-    .post-meta { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
-    .post-date { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
-    .post-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--navy); }
-    .photo-grid { margin-bottom: 24px; border-radius: 12px; overflow: hidden; display: grid; gap: 3px; background: var(--sand); }
+    .species-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 0 48px 100px;
+      gap: 0;
+    }
+
+    .species-card {
+      padding: 40px 32px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .species-card:nth-child(3n) { border-right: none; }
+    .species-card:nth-last-child(-n+3) { border-bottom: none; }
+    .species-card:hover { background: var(--bg); }
+
+    .species-sketch {
+      width: 100%;
+      height: 110px;
+      opacity: 0.75;
+      transition: opacity 0.3s;
+    }
+
+    .species-card.caught .species-sketch { opacity: 0.15; }
+
+    .species-catch-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 65%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s;
+      cursor: pointer;
+    }
+
+    .species-card.caught .species-catch-photo { opacity: 1; }
+
+    .species-footer {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+    }
+
+    .species-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .species-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .species-status.pending { color: var(--gray); }
+    .species-status.caught-label { color: var(--teal); }
+
+    .species-note-text {
+      font-size: 12px;
+      color: var(--mid);
+      margin-top: 4px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* ─── LOG ─── */
+    #log { background: var(--bg); }
+
+    .log-feed {
+      padding: 0 48px 100px;
+    }
+
+    .post-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      border-top: 1px solid var(--rule);
+      padding: 52px 0;
+      gap: 0 40px;
+      animation: rise 0.5s ease both;
+    }
+
+    @keyframes rise { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+
+    .post-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      padding-top: 6px;
+    }
+
+    .post-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .post-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 28px;
+      line-height: 1.1;
+    }
+
+    .photo-grid { display: grid; gap: 3px; margin-bottom: 28px; border-radius: 4px; overflow: hidden; }
     .photo-grid.photos-1 { grid-template-columns: 1fr; }
     .photo-grid.photos-2 { grid-template-columns: 1fr 1fr; }
     .photo-grid.photos-3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
-    .photo-grid.photos-3 img:first-child { grid-row: 1 / 3; }
+    .photo-grid.photos-3 img:first-child { grid-row: 1/3; }
     .photo-grid.photos-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-    .photo-grid img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; transition: opacity 0.2s; min-height: 220px; max-height: 480px; }
-    .photo-grid.photos-1 img { max-height: 560px; min-height: 320px; }
-    .photo-grid img:hover { opacity: 0.92; }
-    .post-caption { font-size: 16px; line-height: 1.75; color: var(--ink); font-weight: 300; max-width: 640px; }
-    .empty-state { text-align: center; padding: 80px 0; color: var(--mid); font-size: 15px; font-weight: 300; }
-    .empty-state-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--navy); margin-bottom: 12px; }
+    .photo-grid img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; min-height:200px; max-height:460px; transition: opacity 0.2s; }
+    .photo-grid.photos-1 img { max-height:540px; min-height:300px; }
+    .photo-grid img:hover { opacity:0.88; }
 
-    /* LIGHTBOX */
-    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 4px; }
-    .lightbox-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 32px; cursor: pointer; line-height: 1; }
-
-    /* FOOTER */
-    footer { background: var(--navy); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: rgba(255,255,255,0.5); }
-    .footer-note { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.04em; }
-
-    /* RESPONSIVE */
-    @media (max-width: 860px) {
-      .map-card { grid-template-columns: 1fr; }
-      .map-card-right { min-height: 260px; }
+    .post-caption {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--mid);
+      max-width: 600px;
+      font-weight: 300;
     }
-    @media (max-width: 720px) {
-      nav { padding: 0 20px; }
-      .nav-links { gap: 16px; }
-      .hero { padding: 0 24px 60px; }
-      .section-header { padding: 56px 24px 32px; }
-      .map-header { padding: 56px 24px 24px; }
-      .map-card { margin: 0 24px 56px; }
-      .map-card-left { padding: 36px 28px; gap: 24px; }
-      .species-grid { grid-template-columns: repeat(2, 1fr); padding: 0 24px 60px; gap: 12px; }
-      .log-feed { padding: 0 24px 60px; }
-      .post-card { grid-template-columns: 48px 1fr; gap: 0 16px; }
-      .post-day-num { font-size: 52px; }
-      footer { padding: 32px 24px; }
+
+    .empty-state {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .empty-state-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .empty-state p {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ─── MAP ─── */
+    #map { background: var(--white); }
+
+    .map-card {
+      margin: 0 48px 100px;
+      border: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .map-left {
+      padding: 56px 48px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .map-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .map-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.0;
+      color: var(--ink);
+    }
+
+    .map-desc {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-top: 12px;
+      font-weight: 300;
+    }
+
+    .password-block {
+      background: var(--bg);
+      padding: 20px 24px;
+      border: 1px solid var(--rule);
+    }
+
+    .password-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .password-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+
+    .password-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
+
+    .copy-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover { background: var(--mid); }
+    .copy-btn.copied { background: var(--teal); }
+
+    .password-hint {
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    .map-right {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Large faded coordinate sketch for Arsham feel */
+    .map-right-sketch {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+    .map-open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 40px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      background: var(--white);
+    }
+
+    .map-open-btn:hover { background: var(--ink); color: var(--white); }
+
+    .map-open-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .map-right-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: rgba(255,255,255,0.6); font-size: 28px; cursor: pointer; font-family: 'Space Mono', monospace; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .species-grid { grid-template-columns: repeat(2, 1fr); }
+      .species-card:nth-child(3n) { border-right: 1px solid var(--rule); }
+      .species-card:nth-child(2n) { border-right: none; }
+      .map-card { grid-template-columns: 1fr; }
+      .map-left { border-right: none; border-bottom: 1px solid var(--rule); }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 20px; }
+      .hero { padding: 100px 24px 60px; }
+      .section-rule { padding: 60px 24px 36px; }
+      .species-grid { grid-template-columns: repeat(2, 1fr); padding: 0 24px 80px; }
+      .species-card { padding: 28px 20px; }
+      .log-feed { padding: 0 24px 80px; }
+      .post-card { grid-template-columns: 52px 1fr; gap: 0 20px; }
+      .map-card { margin: 0 24px 80px; }
+      .map-left { padding: 40px 28px; }
+      .map-right { padding: 40px 28px; }
+      footer { padding: 28px 24px; }
     }
   </style>
 </head>
@@ -163,49 +597,124 @@
   <nav>
     <a class="nav-logo" href="#">Cooper in Belize</a>
     <ul class="nav-links">
-      <li><a href="#map">Map</a></li>
       <li><a href="#species">Catches</a></li>
       <li><a href="#log">Log</a></li>
+      <li><a href="#map">Map</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Live from the Caribbean</div>
-      <h1 class="hero-title">Cooper<br><em>in Belize</em></h1>
+    <div class="hero-top">
+
+      <!-- Large background tarpon sketch — Picasso/naturalist hybrid -->
+      <svg class="hero-sketch" viewBox="0 0 700 280" fill="none" stroke="#111111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tarpon body -->
+        <path d="M80,140 C90,100 140,70 240,68 C340,66 460,75 560,110 C610,128 640,140 650,140 C640,152 610,165 560,175 C460,200 340,208 240,200 C140,192 90,178 80,140 Z" stroke-width="2"/>
+        <!-- Large mouth — upturned -->
+        <path d="M80,140 C65,128 48,115 55,105 C62,95 78,100 88,108" stroke-width="2"/>
+        <path d="M80,140 C62,148 50,158 56,168" stroke-width="1.5"/>
+        <!-- Prominent eye -->
+        <circle cx="115" cy="128" r="18" stroke-width="2"/>
+        <circle cx="115" cy="128" r="6" stroke-width="1.5"/>
+        <!-- Dorsal fin — long, elegant -->
+        <path d="M260,68 C268,38 282,16 300,10 C318,4 330,18 340,36 C350,52 345,65 350,68" stroke-width="1.5"/>
+        <!-- Pectoral fin -->
+        <path d="M160,145 C152,168 148,185 162,192 C176,198 188,182 184,165" stroke-width="1.5"/>
+        <!-- Anal fin -->
+        <path d="M380,198 C375,220 385,238 400,240 C415,242 420,224 415,204" stroke-width="1.5"/>
+        <!-- Deeply forked tail -->
+        <path d="M650,140 C670,110 698,85 690,72 C682,60 665,68 655,82" stroke-width="2"/>
+        <path d="M650,140 C670,168 698,192 690,205 C682,218 665,210 655,196" stroke-width="2"/>
+        <!-- Caudal peduncle detail -->
+        <path d="M600,125 C620,130 638,135 650,140" stroke-width="1.5"/>
+        <path d="M600,158 C620,152 638,146 650,140" stroke-width="1.5"/>
+        <!-- Scale texture — Arsham influence, worn geometric pattern -->
+        <path d="M200,90 C210,84 226,84 235,90" stroke-width="1"/>
+        <path d="M235,90 C245,84 261,84 270,90" stroke-width="1"/>
+        <path d="M270,90 C280,84 296,84 305,90" stroke-width="1"/>
+        <path d="M305,90 C315,84 331,84 340,90" stroke-width="1"/>
+        <path d="M215,105 C225,99 241,99 250,105" stroke-width="1"/>
+        <path d="M250,105 C260,99 276,99 285,105" stroke-width="1"/>
+        <path d="M285,105 C295,99 311,99 320,105" stroke-width="1"/>
+        <path d="M320,105 C330,99 346,99 355,105" stroke-width="1"/>
+        <path d="M355,105 C365,99 381,99 390,105" stroke-width="1"/>
+        <path d="M390,105 C400,99 416,99 425,105" stroke-width="1"/>
+        <!-- Lateral line -->
+        <path d="M140,135 C280,128 440,130 580,138" stroke-width="1" stroke-dasharray="4,6"/>
+      </svg>
+
+      <div class="hero-text">
+        <div class="hero-sup">San Pedro · Ambergris Caye · Belize</div>
+        <h1 class="hero-title">
+          Cooper<br>in Belize
+          <span>May 29 – June 3, 2026</span>
+        </h1>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
       <div class="hero-meta">
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">Location</span>
-          <span class="hero-meta-value">San Pedro, Ambergris Caye</span>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Secret Beach, San Pedro</span>
         </div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">Dates</span>
-          <span class="hero-meta-value">May 29 – June 3, 2026</span>
+        <div class="meta-item">
+          <span class="meta-label">Mission</span>
+          <span class="meta-value">Flats fishing · Caribbean</span>
         </div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">Mission</span>
-          <span class="hero-meta-value">Flats fishing, Secret Beach</span>
+        <div class="meta-item">
+          <span class="meta-label">Vessel</span>
+          <span class="meta-value">Garmin inReach Explorer+</span>
         </div>
+      </div>
+      <div class="hero-index">
+        Live field log<br>
+        Updated daily
       </div>
     </div>
   </div>
 
-  <!-- MAP -->
-  <section id="map">
-    <div class="map-header">
-      <div>
-        <div class="live-badge"><div class="live-dot"></div>Live GPS Tracking</div>
-        <div class="section-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:300;color:var(--navy);">Current Location</div>
+  <!-- SPECIES CHECKLIST -->
+  <section id="species">
+    <div class="section-rule">
+      <div class="section-rule-label">Species Checklist</div>
+      <div class="section-rule-line"></div>
+      <div class="section-rule-num">Belize 2026</div>
+    </div>
+    <div class="species-grid" id="species-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- DAILY LOG -->
+  <section id="log">
+    <div class="section-rule">
+      <div class="section-rule-label">Daily Log</div>
+      <div class="section-rule-line"></div>
+      <div class="section-rule-num">Field Notes</div>
+    </div>
+    <div class="log-feed" id="posts-container">
+      <div class="empty-state">
+        <div class="empty-state-title">Nothing yet</div>
+        <p>Posts begin May 29</p>
       </div>
     </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="map">
+    <div class="section-rule">
+      <div class="section-rule-label">Live Location</div>
+      <div class="section-rule-line"></div>
+      <div class="section-rule-num">GPS Tracking</div>
+    </div>
     <div class="map-card">
-      <div class="map-card-left">
+      <div class="map-left">
         <div>
-          <div class="map-card-eyebrow">Live GPS · Garmin inReach</div>
-          <div class="map-card-heading">Track Cooper<br>in real time</div>
-          <p class="map-card-sub" style="margin-top:12px">Updated every 10 minutes via satellite. Open the map and enter the password to see the live position, waypoints, and track line.</p>
+          <div class="map-eyebrow">Garmin inReach · Satellite</div>
+          <div class="map-title">Track Cooper<br>in real time</div>
+          <p class="map-desc">Position updated every 10 minutes via satellite. Open the map and enter the password below to view the live track line and waypoints.</p>
         </div>
         <div class="password-block">
           <div class="password-label">Map Password</div>
@@ -216,47 +725,36 @@
           <div class="password-hint">Enter this when prompted on the Garmin map page.</div>
         </div>
       </div>
-      <div class="map-card-right">
-        <img class="map-bg-video" src="map-bg.jpg" alt="">
-        <div class="map-bg-overlay"></div>
-        <div class="map-live-label"><div class="live-dot"></div>Updating live</div>
+      <div class="map-right">
+        <div class="map-right-sketch">
+          <!-- Faded coordinate grid — Arsham erosion aesthetic -->
+          <svg viewBox="0 0 300 300" width="300" height="300" fill="none" stroke="#111" stroke-width="0.8">
+            <circle cx="150" cy="150" r="120"/>
+            <circle cx="150" cy="150" r="80"/>
+            <circle cx="150" cy="150" r="40"/>
+            <line x1="30" y1="150" x2="270" y2="150"/>
+            <line x1="150" y1="30" x2="150" y2="270"/>
+            <line x1="65" y1="65" x2="235" y2="235"/>
+            <line x1="235" y1="65" x2="65" y2="235"/>
+            <text x="154" y="28" font-family="Space Mono" font-size="9" fill="#111">N</text>
+            <text x="154" y="280" font-family="Space Mono" font-size="9" fill="#111">S</text>
+            <text x="22" y="154" font-family="Space Mono" font-size="9" fill="#111">W</text>
+            <text x="272" y="154" font-family="Space Mono" font-size="9" fill="#111">E</text>
+          </svg>
+        </div>
+        <div class="live-badge"><div class="live-dot"></div>Updating live</div>
         <a class="map-open-btn" href="https://share.garmin.com/JasperinBelize" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           Open Live Map
         </a>
-        <p class="map-right-note">Opens in a new tab — enter the password from the left</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SPECIES CHECKLIST -->
-  <section id="species">
-    <div class="section-header">
-      <div class="section-label">On the Board</div>
-      <h2 class="section-title">Species Checklist</h2>
-    </div>
-    <div class="species-grid" id="species-grid">
-      <!-- Rendered by JS -->
-    </div>
-  </section>
-
-  <!-- DAILY LOG -->
-  <section id="log">
-    <div class="section-header">
-      <div class="section-label">Field Notes</div>
-      <h2 class="section-title">Daily Log</h2>
-    </div>
-    <div class="log-feed" id="posts-container">
-      <div class="empty-state">
-        <div class="empty-state-title">Nothing yet</div>
-        <p>Posts will appear here once the trip begins. Check back May 29.</p>
+        <p class="map-right-note">Opens in a new tab<br>Enter password from the left</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <span class="footer-logo">Cooper in Belize</span>
-    <span class="footer-note">May 29 – June 3, 2026 &nbsp;·&nbsp; San Pedro, Belize</span>
+    <span class="footer-text">Cooper in Belize · May 29 – June 3, 2026</span>
+    <span class="footer-text">San Pedro, Ambergris Caye</span>
   </footer>
 
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -265,23 +763,116 @@
   </div>
 
   <script>
-    // ─── CONFIG — update these two values ───
-    const CONFIG = {
-      githubUsername: 'Callmejasp',
-      githubRepo:     'Belize-Trip',
+    // ── CONFIG ──
+    const CONFIG = { githubUsername: 'Callmejasp', githubRepo: 'Belize-Trip' };
+    // ────────────
+
+    // Fish sketches — Picasso/naturalist line drawings
+    const FISH_SVGS = {
+      bonefish: `<svg viewBox="0 0 220 100" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28,50 C36,34 68,22 120,24 C168,26 200,38 210,50 C200,62 168,74 120,76 C68,78 36,66 28,50 Z" stroke-width="1.5"/>
+        <path d="M28,50 C18,42 10,34 14,27 C18,20 28,24 32,32" stroke-width="1.5"/>
+        <path d="M210,50 C220,36 218,20 210,16 M210,50 C220,64 218,80 210,84" stroke-width="1.5"/>
+        <circle cx="44" cy="44" r="7" stroke-width="1.5"/><circle cx="44" cy="44" r="2.5" stroke-width="1"/>
+        <path d="M105,24 C108,12 114,6 120,8 C126,10 124,20 122,24" stroke-width="1.2"/>
+        <path d="M60,58 C56,68 58,76 65,76" stroke-width="1.2"/>
+        <path d="M50,46 C220,42 C180,46 160,50" stroke-width="0.8" stroke-dasharray="3,5"/>
+      </svg>`,
+
+      permit: `<svg viewBox="0 0 200 130" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M35,65 C40,32 70,14 108,16 C146,18 178,36 185,65 C178,94 146,112 108,114 C70,116 40,98 35,65 Z" stroke-width="1.5"/>
+        <path d="M35,65 C22,58 14,50 18,42 C22,34 34,36 38,46" stroke-width="1.5"/>
+        <path d="M185,65 C198,48 196,28 188,22 M185,65 C198,82 196,102 188,108" stroke-width="1.5"/>
+        <path d="M85,16 C88,-2 100,-10 112,-4 C124,2 122,14 118,16" stroke-width="1.5"/>
+        <path d="M88,114 C90,126 102,134 114,128 C122,124 120,115 116,113" stroke-width="1.5"/>
+        <circle cx="52" cy="58" r="9" stroke-width="1.5"/><circle cx="52" cy="58" r="3" stroke-width="1"/>
+      </svg>`,
+
+      tarpon: `<svg viewBox="0 0 240 110" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M36,55 C44,32 84,18 140,20 C192,22 222,36 232,55 C222,74 192,88 140,90 C84,92 44,78 36,55 Z" stroke-width="1.5"/>
+        <path d="M36,55 C22,44 12,33 18,24 C24,15 36,20 40,30" stroke-width="1.5"/>
+        <path d="M36,55 C22,62 14,70 20,78" stroke-width="1.5"/>
+        <path d="M232,55 C244,36 242,14 232,8 M232,55 C244,74 242,96 232,102" stroke-width="1.5"/>
+        <circle cx="56" cy="46" r="11" stroke-width="1.5"/><circle cx="56" cy="46" r="4" stroke-width="1"/>
+        <path d="M128,20 C132,2 142,-4 152,2 C162,8 158,18 154,20" stroke-width="1.5"/>
+        <path d="M74,20 C76,12 80,8 84,10" stroke-width="1"/>
+        <path d="M94,18 C96,10 100,6 104,8" stroke-width="1"/>
+        <path d="M114,18 C116,10 120,6 124,8" stroke-width="1"/>
+        <path d="M68,60 C140,56 200,58 226,55" stroke-width="0.8" stroke-dasharray="3,6"/>
+      </svg>`,
+
+      snook: `<svg viewBox="0 0 240 90" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24,45 C32,28 72,18 138,20 C196,22 226,34 232,45 C226,56 196,68 138,70 C72,72 32,62 24,45 Z" stroke-width="1.5"/>
+        <path d="M24,45 C12,38 4,30 10,22 C16,14 26,20 28,30" stroke-width="1.5"/>
+        <path d="M232,45 C242,30 240,12 232,6 M232,45 C242,60 240,78 232,84" stroke-width="1.5"/>
+        <circle cx="42" cy="38" r="7" stroke-width="1.5"/><circle cx="42" cy="38" r="2.5" stroke-width="1"/>
+        <path d="M28,38 C160,32 210,36 228,40" stroke-width="1.2"/>
+        <path d="M110,20 C114,8 120,4 126,8 C130,12 128,18 126,20" stroke-width="1.2"/>
+        <path d="M70,60 C66,70 68,78 76,78" stroke-width="1.2"/>
+      </svg>`,
+
+      barracuda: `<svg viewBox="0 0 280 80" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18,40 C26,28 56,22 140,24 C210,26 252,32 264,40 C252,48 210,54 140,56 C56,58 26,52 18,40 Z" stroke-width="1.5"/>
+        <path d="M18,40 C6,34 -2,26 4,18 C10,12 20,16 22,26" stroke-width="1.5"/>
+        <path d="M18,40 C6,44 0,50 6,56" stroke-width="1.5"/>
+        <path d="M264,40 C274,26 276,10 268,4 M264,40 C274,54 276,70 268,76" stroke-width="1.5"/>
+        <circle cx="34" cy="34" r="6" stroke-width="1.5"/><circle cx="34" cy="34" r="2" stroke-width="1"/>
+        <path d="M10,28 C16,22 22,22 26,26" stroke-width="1.2"/>
+        <path d="M10,52 C16,56 22,56 26,52" stroke-width="1.2"/>
+        <path d="M140,24 C142,14 148,10 152,14 C154,18 152,22 150,24" stroke-width="1.2"/>
+        <path d="M200,24 C202,14 206,10 210,12 C212,16 210,22 208,24" stroke-width="1.2"/>
+      </svg>`,
+
+      jack: `<svg viewBox="0 0 200 120" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32,60 C36,28 62,10 100,12 C138,14 168,32 172,60 C168,88 138,108 100,108 C62,108 36,92 32,60 Z" stroke-width="1.5"/>
+        <path d="M32,60 C18,52 10,42 16,32 C22,22 34,26 36,38" stroke-width="1.5"/>
+        <path d="M172,60 C184,42 182,18 172,10 M172,60 C184,78 182,102 172,110" stroke-width="1.5"/>
+        <circle cx="50" cy="52" r="9" stroke-width="1.5"/><circle cx="50" cy="52" r="3" stroke-width="1"/>
+        <path d="M76,12 C78,-2 88,-8 98,-2 C106,4 104,10 102,12" stroke-width="1.5"/>
+        <path d="M76,108 C78,118 88,124 98,120 C106,116 104,110 102,108" stroke-width="1.5"/>
+      </svg>`,
+
+      snapper: `<svg viewBox="0 0 200 110" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M34,55 C40,28 68,14 106,16 C144,18 172,34 178,55 C172,76 144,92 106,92 C68,92 40,82 34,55 Z" stroke-width="1.5"/>
+        <path d="M34,55 C22,46 14,36 20,26 C26,18 36,22 38,34" stroke-width="1.5"/>
+        <path d="M178,55 C190,38 188,16 178,8 M178,55 C190,72 188,94 178,102" stroke-width="1.5"/>
+        <circle cx="52" cy="47" r="8" stroke-width="1.5"/><circle cx="52" cy="47" r="3" stroke-width="1"/>
+        <path d="M82,16 C86,2 96,-4 108,2 C116,6 114,14 112,16" stroke-width="1.5"/>
+        <path d="M42,46 C44,44 50,44 52,46" stroke-width="1"/>
+        <path d="M80,50 C160,46 170,50 174,54" stroke-width="0.8" stroke-dasharray="2,5"/>
+      </svg>`,
+
+      trigger: `<svg viewBox="0 0 180 130" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32,65 C36,30 58,10 92,12 C130,14 158,36 162,65 C158,94 130,116 92,114 C58,112 36,100 32,65 Z" stroke-width="1.5"/>
+        <path d="M32,65 C20,56 14,45 20,34 C26,25 36,28 38,40" stroke-width="1.5"/>
+        <path d="M162,65 C172,50 170,30 162,22 M162,65 C172,80 170,100 162,108" stroke-width="1.5"/>
+        <circle cx="50" cy="56" r="8" stroke-width="1.5"/><circle cx="50" cy="56" r="3" stroke-width="1"/>
+        <path d="M86,12 C88,-2 96,-8 100,-2 M100,-2 C102,4 100,10 98,12" stroke-width="1.5"/>
+        <path d="M94,12 C92,4 90,0 94,-2" stroke-width="1.5"/>
+        <path d="M82,110 C84,122 94,128 100,122" stroke-width="1.2"/>
+        <path d="M42,64 C50,60 58,56 66,58" stroke-width="1"/>
+      </svg>`,
+
+      ladyfish: `<svg viewBox="0 0 240 85" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26,42 C34,26 72,16 132,18 C188,20 220,30 228,42 C220,54 188,64 132,66 C72,68 34,58 26,42 Z" stroke-width="1.5"/>
+        <path d="M26,42 C14,34 8,26 12,18 C16,10 26,14 28,24" stroke-width="1.5"/>
+        <path d="M228,42 C238,28 236,10 228,4 M228,42 C238,56 236,74 228,80" stroke-width="1.5"/>
+        <circle cx="44" cy="36" r="8" stroke-width="1.5"/><circle cx="44" cy="36" r="3" stroke-width="1"/>
+        <path d="M115,18 C118,8 124,4 128,8 C132,12 130,16 128,18" stroke-width="1.2"/>
+        <path d="M54,42 C140,38 200,40 222,42" stroke-width="0.8" stroke-dasharray="2,5"/>
+      </svg>`
     };
-    // ────────────────────────────────────────
 
     const SPECIES_LIST = [
-      { id: 'bonefish',  name: 'Bonefish',       icon: '🐟' },
-      { id: 'permit',    name: 'Permit',          icon: '🐠' },
-      { id: 'tarpon',    name: 'Tarpon',          icon: '🐡' },
-      { id: 'snook',     name: 'Snook',           icon: '🎣' },
-      { id: 'barracuda', name: 'Barracuda',       icon: '🦈' },
-      { id: 'jack',      name: 'Jack Crevalle',   icon: '🐟' },
-      { id: 'snapper',   name: 'Mutton Snapper',  icon: '🐠' },
-      { id: 'trigger',   name: 'Triggerfish',     icon: '🐡' },
-      { id: 'ladyfish',  name: 'Ladyfish',        icon: '🐟' },
+      { id: 'bonefish',  name: 'Bonefish'      },
+      { id: 'permit',    name: 'Permit'         },
+      { id: 'tarpon',    name: 'Tarpon'         },
+      { id: 'snook',     name: 'Snook'          },
+      { id: 'barracuda', name: 'Barracuda'      },
+      { id: 'jack',      name: 'Jack Crevalle'  },
+      { id: 'snapper',   name: 'Mutton Snapper' },
+      { id: 'trigger',   name: 'Triggerfish'    },
+      { id: 'ladyfish',  name: 'Ladyfish'       },
     ];
 
     const RAW_BASE = `https://raw.githubusercontent.com/${CONFIG.githubUsername}/${CONFIG.githubRepo}/main`;
@@ -293,35 +884,24 @@
         const data = await res.json();
         renderSpecies(data.catches || []);
         if (data.posts && data.posts.length > 0) renderPosts(data.posts);
-      } catch (_) {
-        renderSpecies([]);
-      }
+      } catch (_) { renderSpecies([]); }
     }
 
     function renderSpecies(catches) {
       const grid = document.getElementById('species-grid');
       grid.innerHTML = SPECIES_LIST.map((s, i) => {
-        const catch_ = catches.find(c => c.species === s.id);
-        const caught = !!catch_;
+        const c = catches.find(x => x.species === s.id);
+        const caught = !!c;
         return `
-          <div class="species-card ${caught ? 'caught' : ''}" style="animation:slide-up 0.4s ${i*0.06}s both">
-            <div class="species-photo">
-              ${caught && catch_.photo
-                ? `<img src="${catch_.photo}" alt="${s.name}" onclick="openLightbox('${catch_.photo}')" loading="lazy">
-                   <div class="species-badge">✓</div>`
-                : `<div class="species-placeholder">
-                     <span class="species-placeholder-icon">${s.icon}</span>
-                     <span class="species-placeholder-text">Not yet</span>
-                   </div>`
-              }
-            </div>
-            <div class="species-info">
+          <div class="species-card ${caught ? 'caught' : ''}" style="animation: rise 0.4s ${i*0.06}s both">
+            ${caught && c.photo ? `<img class="species-catch-photo" src="${c.photo}" alt="${s.name}" onclick="openLightbox('${c.photo}')">` : ''}
+            <div class="species-sketch">${FISH_SVGS[s.id] || ''}</div>
+            <div class="species-footer">
               <div class="species-name">${s.name}</div>
               ${caught
-                ? `<div class="species-day">Day ${catch_.day} · ${formatDate(catch_.date)}</div>
-                   ${catch_.note ? `<div class="species-note">${catch_.note}</div>` : ''}`
-                : `<div class="species-pending">Still hunting…</div>`
-              }
+                ? `<div class="species-status caught-label">✓ &nbsp;Day ${c.day} — ${formatDate(c.date)}</div>
+                   ${c.note ? `<div class="species-note-text">${c.note}</div>` : ''}`
+                : `<div class="species-status pending">Still hunting</div>`}
             </div>
           </div>`;
       }).join('');
@@ -330,18 +910,14 @@
     function renderPosts(posts) {
       const container = document.getElementById('posts-container');
       container.innerHTML = posts.map((post, i) => `
-        <article class="post-card" style="animation-delay:${i * 0.08}s">
-          <div class="post-day-num">${String(post.day).padStart(2,'0')}</div>
-          <div class="post-content">
-            <div class="post-meta">
-              <span class="post-date">${formatDate(post.date)}</span>
-              <span class="post-title">${post.title || 'Day ' + post.day}</span>
-            </div>
+        <article class="post-card" style="animation-delay:${i*0.08}s">
+          <div class="post-num">0${post.day}</div>
+          <div>
+            <div class="post-date">${formatDate(post.date)}</div>
+            <div class="post-title">${post.title || 'Day ' + post.day}</div>
             ${post.photos && post.photos.length > 0 ? `
-              <div class="photo-grid photos-${Math.min(post.photos.length, 4)}">
-                ${post.photos.slice(0,4).map(url => `
-                  <img src="${url}" alt="Day ${post.day}" loading="lazy" onclick="openLightbox('${url}')">
-                `).join('')}
+              <div class="photo-grid photos-${Math.min(post.photos.length,4)}">
+                ${post.photos.slice(0,4).map(url => `<img src="${url}" loading="lazy" onclick="openLightbox('${url}')"`+`>`).join('')}
               </div>` : ''}
             ${post.caption ? `<p class="post-caption">${post.caption.replace(/\n/g,'<br>')}</p>` : ''}
           </div>
@@ -351,14 +927,13 @@
 
     function formatDate(dateStr) {
       if (!dateStr) return '';
-      const d = new Date(dateStr + 'T12:00:00');
-      return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+      return new Date(dateStr + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
     }
 
     function copyPassword() {
       navigator.clipboard.writeText('cooperwiz').then(() => {
         const btn = document.getElementById('copy-btn');
-        btn.textContent = 'Copied!';
+        btn.textContent = 'Copied';
         btn.classList.add('copied');
         setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
       });
@@ -369,10 +944,7 @@
       document.getElementById('lightbox').classList.add('open');
     }
 
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-    }
-
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
     loadAll();
