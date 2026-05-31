@@ -5,12 +5,21 @@
       "day": 2,
       "date": "2026-05-30",
       "title": "Guide day",
-      "caption": "My first day fishing in Belize started the way a lot of good fishing days probably do — with the plan changing before it even began.\n\nA storm rolled through in the morning and pushed our pickup back, but we still made it happen. By the time Eduardo, my guide, and I got moving, the weather was still hanging around. The air was thick, heavy, and wet. The humidity here is no joke. Running to the first spot during the tail end of the storm felt like breathing through a bandana.\n\nWe started the day cruising through the mangroves, which honestly would have been worth it even without a fish. We saw some tarpon rolling and for a second it felt like the day might start with chaos. But they never gave us the shot we needed, and we didn’t hook up.\n\nOnce the storm cleared, the day opened up. The light got better, the flats started to show themselves, and suddenly we could actually see fish.\n\nI had been hoping for a shot at my first bonefish, and we got it. Then another. Then another. By the end of the day, Eduardo and I had netted three bones. They weren’t easy fish either. Today everything felt spooky. Every push of water, every bad cast, every little mistake seemed to matter. These fish were hard to approach and gave very little room for error. \n\nI had one shot at a permit, but my double haul into the wind needs some elbow grease. Tomorrow I’ll come with lighter tippet and more knowledge!",
+      "caption": "My first day fishing in Belize started the way a lot of good fishing days probably do â with the plan changing before it even began.\n\nA storm rolled through in the morning and pushed our pickup back, but we still made it happen. By the time Eduardo, my guide, and I got moving, the weather was still hanging around. The air was thick, heavy, and wet. The humidity here is no joke. Running to the first spot during the tail end of the storm felt like breathing through a bandana.\n\nWe started the day cruising through the mangroves, which honestly would have been worth it even without a fish. We saw some tarpon rolling and for a second it felt like the day might start with chaos. But they never gave us the shot we needed, and we didnât hook up.\n\nOnce the storm cleared, the day opened up. The light got better, the flats started to show themselves, and suddenly we could actually see fish.\n\nI had been hoping for a shot at my first bonefish, and we got it. Then another. Then another. By the end of the day, Eduardo and I had netted three bones. They werenât easy fish either. Today everything felt spooky. Every push of water, every bad cast, every little mistake seemed to matter. These fish were hard to approach and gave very little room for error. \n\nI had one shot at a permit, but my double haul into the wind needs some elbow grease. Tomorrow Iâll come with lighter tippet and more knowledge!",
       "photos": [
         "https://raw.githubusercontent.com/Callmejasp/Belize-Trip/main/photos/day2-1780194057400.jpeg"
       ],
       "timestamp": "2026-05-31T02:21:55.067Z"
     }
   ],
-  "catches": []
+  "catches": [
+    {
+      "species": "bonefish",
+      "day": 2,
+      "date": "2026-05-30",
+      "photo": "https://raw.githubusercontent.com/Callmejasp/Belize-Trip/main/photos/catch-bonefish-1780194086269.jpeg",
+      "note": "",
+      "timestamp": "2026-05-31T02:22:33.684Z"
+    }
+  ]
 }
