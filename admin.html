@@ -405,7 +405,9 @@
     async function readPostsJson() {
       try {
         const data = await ghFetch('posts.json');
-        const decoded = JSON.parse(atob(data.content.replace(/\n/g,'')));
+        const raw = atob(data.content.replace(/\n/g, ''));
+        const decoded = JSON.parse(decodeURIComponent(escape(raw)));
+
         return { data: decoded, sha: data.sha };
       } catch (_) {
         return { data: { posts: [], catches: [] }, sha: null };
